@@ -1,26 +1,29 @@
-![Konva logo](https://raw.githubusercontent.com/konvajs/konvajs.github.io/master/apple-touch-icon-180x180.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/konvajs/konvajs.github.io/master/apple-touch-icon-180x180.png" alt="Konva logo" height="180" />
+</p>
 
-#Konva
+<h1 align="center">Konva</h1>
+
+[![Financial Contributors on Open Collective](https://opencollective.com/konva/all/badge.svg?label=financial+contributors)](https://opencollective.com/konva) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/konvajs/konva?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![npm version](https://badge.fury.io/js/konva.svg)](http://badge.fury.io/js/konva) [![bower version](https://badge.fury.io/bo/konva.svg)](http://badge.fury.io/bo/konva)
+[![Build Status](https://travis-ci.org/konvajs/konva.png)](https://travis-ci.org/konvajs/konva)  [![Code Climate](https://codeclimate.com/github/konvajs/konva/badges/gpa.svg)](https://codeclimate.com/github/konvajs/konva) [![CDNJS version](https://img.shields.io/cdnjs/v/konva.svg)](https://cdnjs.com/libraries/konva)
 
 Konva is an HTML5 Canvas JavaScript framework that enables high performance animations, transitions, node nesting, layering, filtering, caching, event handling for desktop and mobile applications, and much more.
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/konvajs/konva?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-[![npm version](https://badge.fury.io/js/konva.svg)](http://badge.fury.io/js/konva) [![bower version](https://badge.fury.io/bo/konva.svg)](http://badge.fury.io/bo/konva)
-[![Build Status](https://travis-ci.org/konvajs/konva.png)](https://travis-ci.org/konvajs/konva)  [![Code Climate](https://codeclimate.com/github/konvajs/konva/badges/gpa.svg)](https://codeclimate.com/github/konvajs/konva)
 
 You can draw things onto the stage, add event listeners to them, move them, scale them, and rotate them independently from other shapes to support high performance animations, even if your application uses thousands of shapes. Served hot with a side of awesomeness.
 
 This repository began as a GitHub fork of [ericdrowell/KineticJS](https://github.com/ericdrowell/KineticJS).
 
-* **Visit:** The [Home Page](http://konvajs.github.io/) and follow on [Twitter](https://twitter.com/lavrton)
-* **Discover:** [Tutorials](http://konvajs.github.io/docs), [API Documentation](http://konvajs.github.io/api)
+* **Visit:** The [Home Page](http://konvajs.org/) and follow on [Twitter](https://twitter.com/lavrton)
+* **Discover:** [Tutorials](http://konvajs.org/docs), [API Documentation](http://konvajs.org/api)
 * **Help:** [StackOverflow](http://stackoverflow.com/questions/tagged/konvajs), [Chat](https://gitter.im/konvajs/konva)
 
 # Quick Look
 
 ```html
-<script src="https://cdn.rawgit.com/konvajs/konva/1.4.0/konva.min.js"></script>
+<script src="https://unpkg.com/konva@3.1.0/konva.js"></script>
 <div id="container"></div>
 <script>
     var stage = new Konva.Stage({
@@ -58,105 +61,153 @@ This repository began as a GitHub fork of [ericdrowell/KineticJS](https://github
 </script>
 ```
 
+# Browsers support
+
+Konva works in all modern mobile and desktop browsers. A browser need to be capable to run javascript code from ES2015 spec. For older browsers you may need polyfills for missing functions.
+
+At the current moment `Konva` doesn't work in IE11 directly. To make it work you just need to provide some polyfills such as `Array.prototype.find`, `String.prototype.trimLeft` and `String.prototype.trimRight`.
+
 # Loading and installing Konva
 
 Konva supports UMD loading. So you can use all possible variants to load the framework into your project:
 
-###1 Load Konva via classical `<script>` tag:
+### 1 Load Konva via classical `<script>` tag:
 
 ```html
-<script src="https://cdn.rawgit.com/konvajs/konva/1.4.0/konva.min.js"></script>
+<script src="https://unpkg.com/konva@^4.0.3/konva.js"></script>
 ```
 
-You can use CDN: [https://cdn.rawgit.com/konvajs/konva/1.4.0/konva.min.js](https://cdn.rawgit.com/konvajs/konva/1.4.0/konva.min.js)
+You can also use a CDN: [https://unpkg.com/konva@^4.0.3/konva.js](https://unpkg.com/konva@^4.0.3/konva.js)
 
-###2 Load via AMD (requirejs):
-
-```javascript
-define(['./konva'], function(Konva) {
-   // your code
-});
-```
-
-###3 CommonJS style with npm:
+### 2 Install with npm:
 
 ```bash
 npm install konva --save
 ```
 
 ```javascript
-// old way
+// The old way (e.g. a CommonJS-style import)
 var Konva = require('konva');
 
-
-// modern way
+// The modern way (e.g. an ES6-style import for webpack, parcel)
 import Konva from 'konva';
-
-// typescript
-import * as Konva from 'konva';
 ```
 
-###4 Minimal bundle
+#### Typescript usage
 
-If you are using webpack or browserfy you can use this approach to load only required Konva's parts:
+Add DOM definitions into your `tsconfig.json` and set `esModuleInterop` to `true`:
+
+```
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": [
+        "es6",
+        "dom"
+    ]
+  }
+}
+```
+
+Then use it:
 
 ```javascript
-import Konva from 'konva/src/Core';
-// now you have Konva object with Stage, Layer, FastLayer, Group, Shape and some additional utils function
-// so there are no shapes (rect, circle, etc), no filters, no d&d support.
-
-
-// but you can simply add anything you need:
-import 'konva/src/shapes/rect';
-//now Konva.Rect is available to use
+import Konva from 'konva';
 ```
 
-###5 NodeJS
+### 3 Minimal bundle
 
-You have to install some deps manually to use Konva in nodejs env.
+```javascript
+import Konva from 'konva/lib/Core';
+// Now you have a Konva object with Stage, Layer, FastLayer, Group, Shape and some additional utils function.
+// Also core currently already have support for drag&drop and animations.
+// BUT there are no shapes (rect, circle, etc), no filters.
+
+// but you can simply add anything you need:
+import { Rect } from 'konva/lib/shapes/Rect';
+// importing a shape will automatically inject it into Konva object
+
+var rect1 = new Rect();
+// or:
+var shape = new Konva.Rect();
+
+// for filters you can use this:
+import { Blur } from 'konva/lib/filters/Blur';
+```
+
+### 4 NodeJS env
 
 We are using [node-canvas](https://github.com/Automattic/node-canvas) to create canvas element.
+Please check installation instructions for it. Then just run
 
-1. Install node-canvas dependencies [https://github.com/Automattic/node-canvas](https://github.com/Automattic/node-canvas)
-2. `npm install canvas --save`
-2. `npm install jsdom --save`
-3. `npm install konva --save`
+```bash
+npm install konva-node
+```
 
-See file `resources/nodejs-demo.js` for example.
+Then in you javascript file you will need to use
 
-Last tested with node@5.10.1, canvas@1.3.14, jsdom@8.5.0
+```javascript
+const Konva = require('konva-node');
+```
 
-#Change log
+See file `konva-node/demo.js` file in this repo as a sample.
+
+# Backers
+
+- [myposter GmbH](https://www.myposter.de/)
+- [queue.gg](https://queue.gg/)
+
+
+# Change log
 
 See [CHANGELOG.md](https://github.com/konvajs/konva/blob/master/CHANGELOG.md).
 
-#Dev environment
+## Building the Konva Framework
 
-Before doing all dev stuff make sure you have node installed. After that, run `npm install` in the main directory to install the node module dependencies.
+To make a full build run `npm run build`. The command will compile all typescript files, combine then into one bundle and run minifier.
 
-Run `gulp -T` to see all build options.
-
-##Building the Konva Framework
-
-To build a development version of the framework, run `gulp dev-build`. To run a full build, which also produces the minified version run `gulp build`.
-
-If you add a file in the src directory, be sure to add the filename to the sourceFiles array variable in `gulpfile.js`.
-
-##Testing
+## Testing
 
 Konva uses Mocha for testing.
 
-* If you need run test only one time run `gulp test`.
-* While developing it is easy to use `gulp` default task with watch. Just run it and go to [http://localhost:8080/test/runner.html](http://localhost:8080/test/runner.html). After src file change konva-dev.js will be automatically created, so you just need refresh test the page.
+* If you need run test only one time run `npm run test`.
+* While developing it is easy to use `npm start`. Just run it and go to [http://localhost:8080/test/runner.html](http://localhost:8080/test/runner.html). The watcher will rebuild the bundle on any change.
+
 
 Konva is covered with hundreds of tests and well over a thousand assertions.
 Konva uses TDD (test driven development) which means that every new feature or bug fix is accompanied with at least one new test.
 
-##Generate documentation
+## Generate documentation
 
-Run `gulp api` which will build the documentation files and place them in the `api` folder.
+Run `npx gulp api` which will build the documentation files and place them in the `api` folder.
 
+# Pull Requests
 
-#Pull Requests
 I'd be happy to review any pull requests that may better the Konva project,
-in particular if you have a bug fix, enhancement, or a new shape (see `src/shapes` for examples).  Before doing so, please first make sure that all of the tests pass (`gulp lint test`).
+in particular if you have a bug fix, enhancement, or a new shape (see `src/shapes` for examples). Before doing so, please first make sure that all of the tests pass (`gulp lint test`).
+
+## Contributors
+
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/konva/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/konva"><img src="https://opencollective.com/konva/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/konva/contribute)]
+
+<a href="https://opencollective.com/konva/organization/0/website"><img src="https://opencollective.com/konva/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/1/website"><img src="https://opencollective.com/konva/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/2/website"><img src="https://opencollective.com/konva/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/3/website"><img src="https://opencollective.com/konva/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/4/website"><img src="https://opencollective.com/konva/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/5/website"><img src="https://opencollective.com/konva/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/6/website"><img src="https://opencollective.com/konva/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/7/website"><img src="https://opencollective.com/konva/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/8/website"><img src="https://opencollective.com/konva/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/konva/organization/9/website"><img src="https://opencollective.com/konva/organization/9/avatar.svg"></a>

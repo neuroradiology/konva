@@ -1,12 +1,14 @@
-window.requestAnimFrame = (function(callback) {
-  return window.requestAnimationFrame ||
+window.requestAnimFrame = (function (callback) {
+  return (
+    window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.oRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    function(callback) {
+    function (callback) {
       window.setTimeout(callback, 1000 / 30);
-    };
+    }
+  );
 })();
 
 stats = new Stats();
@@ -18,7 +20,7 @@ document.body.appendChild(stats.domElement);
 
 function setStats() {
   stats.begin();
-  requestAnimFrame(function() {
+  requestAnimFrame(function () {
     stats.end();
     setStats();
   });

@@ -9,7 +9,13 @@ homedocs
 jsdoc-template
 api
 test/sandbox.html
+package-lock.json
+lib
+src_old
 *.zip
+*_cache
+types
+out.png
 
 # Numerous always-ignore extensions
 *.diff
@@ -35,6 +41,7 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 *.md.html
+.vscode
 
 # Dreamweaver added files
 _notes
